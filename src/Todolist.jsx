@@ -3,10 +3,10 @@ import { useState } from "react"
 
 const Todolist = () => {
     const [items, setItems] = useState([]);
-    const [todo, setTodo] = useState({description: "", date: ""});
+    const [todo, setTodo] = useState({ description: "", date: "" });
 
     const handleInputChange = (e) =>
-        setTodo({...todo, [e.target.name]: e.target.value});
+        setTodo({ ...todo, [e.target.name]: e.target.value });
 
     const addItem = () =>
         setItems([...items, todo]);
@@ -28,14 +28,17 @@ const Todolist = () => {
                 name="description"
                 value={todo.description}
                 onChange={handleInputChange} />
-            <input 
+            <input
                 type="date"
                 name="date"
                 value={todo.date}
-                onChange={handleInputChange}/>
-    
+                onChange={handleInputChange} />
+
             <button onClick={addItem}>Add</button>
             <table>
+                <thead>
+                    <tr><th>Date</th><th>Description</th></tr>
+                </thead>
                 <tbody>
                     {itemRows}
                 </tbody>
