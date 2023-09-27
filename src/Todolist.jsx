@@ -14,11 +14,14 @@ const Todolist = () => {
 
 
     const itemRows = items.map((todo, index) =>
-        <tr key={index}>
-            <td>{todo.date}</td>
-            <td>{todo.description}</td>
-            <td><button onClick={() => setItems(items.filter((todo, i) => i !== index))}>Delete</button></td>
-        </tr>
+        <>
+            <tr key={index}>
+                <td>{todo.date}</td>
+                <td>{todo.description}</td>
+                <td><button onClick={() => setItems(items.filter((todo, i) => i !== index))}>Delete</button></td>
+            </tr>
+            <hr />
+        </>
     )
 
 
