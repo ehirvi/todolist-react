@@ -1,5 +1,6 @@
 import { useState } from "react"
-import './Todolist.css'
+import '../Todolist.css'
+import TodoTable from "./TodoTable";
 
 
 const Todolist = () => {
@@ -12,17 +13,8 @@ const Todolist = () => {
     const addItem = () =>
         setItems([...items, todo]);
 
-
-    const itemRows = items.map((todo, index) =>
-        <>
-            <tr key={index}>
-                <td>{todo.date}</td>
-                <td>{todo.description}</td>
-                <td><button onClick={() => setItems(items.filter((todo, i) => i !== index))}>Delete</button></td>
-            </tr>
-            <hr />
-        </>
-    )
+    const deleteItem = (index) =>
+        setItems(items.filter((todo, i) => i !== index));
 
 
     return (
@@ -41,14 +33,9 @@ const Todolist = () => {
                 onChange={handleInputChange} />
 
             <button onClick={addItem}>Add</button>
-            <table>
-                <thead>
-                    <tr><th>Date</th><th>Description</th></tr>
-                </thead>
-                <tbody>
-                    {itemRows}
-                </tbody>
-            </table>
+
+            <TodoTable items={items} onDelete={deleteItem}/>
+             
         </>
     )
 
