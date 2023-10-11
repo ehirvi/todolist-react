@@ -2,6 +2,8 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-material.css"
 import { useRef } from "react";
+import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete"
 
 
 function TodoGrid(props) {
@@ -24,9 +26,9 @@ function TodoGrid(props) {
     return (
 
         <>
-            <button onClick={deleteSelected}>Delete</button>
+            <Button onClick={deleteSelected} variant="contained" startIcon={<DeleteIcon/>}>Delete</Button>
             <div className="ag-theme-material"
-                style={{height: "700px", width: "115%", margin: "auto"}}>
+                style={{height: "700px", width: "100%", margin: "auto"}}>
                 <AgGridReact
                     ref={gridRef}
                     onGridReady={params => gridRef.current = params.api}
