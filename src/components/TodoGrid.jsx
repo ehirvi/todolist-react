@@ -7,13 +7,15 @@ import DeleteIcon from "@mui/icons-material/Delete"
 
 
 function TodoGrid(props) {
-    
+
 
     const columns = [
-        {headerName: "Description", field: "description", sortable: true, filter: true, floatingFilter: true},
-        {headerName: "Date", field: "date", sortable: true, filter: true, floatingFilter: true},
-        {headerName: "Priority", field: "priority", sortable: true, filter: true, floatingFilter: true,
-            cellStyle: params => params.value === "High" ? {color: "red"} : {color: "black"}}
+        { headerName: "Description", field: "description", sortable: true, filter: true, floatingFilter: true },
+        { headerName: "Date", field: "date", sortable: true, filter: true, floatingFilter: true },
+        {
+            headerName: "Priority", field: "priority", sortable: true, filter: true, floatingFilter: true,
+            cellStyle: params => params.value === "High" ? { color: "red" } : { color: "black" }
+        }
     ];
 
     const gridRef = useRef();
@@ -26,9 +28,9 @@ function TodoGrid(props) {
     return (
 
         <>
-            <Button onClick={deleteSelected} variant="contained" startIcon={<DeleteIcon/>}>Delete</Button>
+            <Button onClick={deleteSelected} variant="contained" startIcon={<DeleteIcon />} style={{ margin: "20px", backgroundColor: "red" }}>Delete</Button>
             <div className="ag-theme-material"
-                style={{height: "700px", width: "100%", margin: "auto"}}>
+                style={{ height: "700px", width: "100%", margin: "auto" }}>
                 <AgGridReact
                     ref={gridRef}
                     onGridReady={params => gridRef.current = params.api}

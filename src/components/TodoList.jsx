@@ -1,8 +1,9 @@
 import { useState } from "react"
 import TodoGrid from "./TodoGrid";
-import {Button, TextField, Stack} from "@mui/material/";
+import { Button, TextField, Stack } from "@mui/material/";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/fi";
 
 
 function Todolist() {
@@ -13,7 +14,7 @@ function Todolist() {
         setTodo({ ...todo, [e.target.name]: e.target.value });
 
     const setDate = (date) =>
-        setTodo({...todo, [items.date]: date})
+        date != null && setTodo({ ...todo, ["date"]: date.format("DD.MM.YYYY") })
 
     const addItem = () =>
         setItems([...items, todo]);
@@ -37,15 +38,9 @@ function Todolist() {
                     name="description" value={todo.description}
                     onChange={handleInputChange}
                 />
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker value={todo.date} onChange={date => setDate(date)}/>
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
+                    <DatePicker label="Date" onChange={date => setDate(date)} />
                 </LocalizationProvider>
-                {/* <TextField
-                    label="Date"
-                    variant="standard"
-                    name="date" value={todo.date}
-                    onChange={handleInputChange}
-                /> */}
                 <TextField
                     label="Priority"
                     variant="standard"
