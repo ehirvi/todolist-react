@@ -1,14 +1,17 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import TodoGrid from "./TodoGrid";
 import { Button, TextField, Stack } from "@mui/material/";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import DeleteIcon from "@mui/icons-material/Delete"
 import "dayjs/locale/fi";
 
 
 function Todolist() {
     const [items, setItems] = useState([]);
     const [todo, setTodo] = useState({ description: "", date: "", priority: "" });
+
+    const gridRef = useRef();
 
     const handleInputChange = (e) =>
         setTodo({ ...todo, [e.target.name]: e.target.value });
@@ -18,9 +21,12 @@ function Todolist() {
 
     const addItem = () =>
         setItems([...items, todo]);
+ 
 
-    const deleteItem = (index) =>
-        setItems(items.filter((todo, i) => i != index));
+    const deleteItem = () => {
+        if (gridRef.current.getSelectedNodes().length > 0)
+            setItems(items.filter((todo, i) => i != gridRef.current.getSelectedNodes()[0].id));
+    }
 
 
     return (
@@ -49,10 +55,11 @@ function Todolist() {
                 />
 
                 <Button onClick={addItem} variant="contained">Add</Button>
+                <Button onClick={deleteItem} variant="contained" startIcon={<DeleteIcon />} style={{ backgroundColor: "red" }} >Delete</Button>
 
             </Stack>
 
-            <TodoGrid items={items} onDelete={deleteItem} />
+            <TodoGrid items={items} gridRef={gridRef} />
 
         </>
     )
