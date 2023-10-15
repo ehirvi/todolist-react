@@ -16,16 +16,22 @@ function Todolist() {
     const handleInputChange = (e) =>
         setTodo({ ...todo, [e.target.name]: e.target.value });
 
+
     const setDate = (date) =>
         date != null && setTodo({ ...todo, ["date"]: date.format("DD.MM.YYYY") })
+
 
     const addItem = () =>
         setItems([...items, todo]);
  
 
+    const getSelectedItems = () =>
+        gridRef.current.getSelectedNodes().map((item, i) => parseInt(item.id));
+
+
     const deleteItem = () => {
         if (gridRef.current.getSelectedNodes().length > 0)
-            setItems(items.filter((todo, i) => i != gridRef.current.getSelectedNodes()[0].id));
+            setItems(items.filter((todo, i) => !getSelectedItems().includes(i)));
     }
 
 

@@ -23,7 +23,7 @@ function TodoGrid({ items, gridRef }) {
                 <AgGridReact
                     ref={gridRef}
                     onGridReady={params => gridRef.current = params.api}
-                    rowSelection="single"
+                    rowSelection="multiple"
                     columnDefs={columns}
                     rowData={items}
                     animateRows={true}>
