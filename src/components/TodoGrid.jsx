@@ -11,7 +11,7 @@ function TodoGrid({ items, gridRef }) {
         { headerName: "Date", field: "date", sortable: true, filter: true, floatingFilter: true },
         {
             headerName: "Priority", field: "priority", sortable: true, filter: true, floatingFilter: true,
-            cellStyle: params => params.value === "High" ? { color: "red" } : { color: "black" }
+            cellStyle: params => params.value.toLowerCase() == "high" ? { color: "red" } : { color: "black" }
         }
     ];
 

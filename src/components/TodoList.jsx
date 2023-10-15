@@ -22,8 +22,8 @@ function Todolist() {
 
 
     const addItem = () =>
-        setItems([...items, todo]);
- 
+        todo.description != "" && setItems([...items, todo]);
+
 
     const getSelectedItems = () =>
         gridRef.current.getSelectedNodes().map((item, i) => parseInt(item.id));

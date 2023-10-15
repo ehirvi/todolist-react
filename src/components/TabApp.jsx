@@ -13,7 +13,7 @@ function TabApp() {
     
     return (
         <>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} onChange={handleChange} centered>
             <Tab value="home" label="Home"/>
             <Tab value="todos" label="Todos"/>
         </Tabs>
